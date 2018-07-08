@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-Strict
 Version  : 0.47
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.47.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.47.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-strict-perl/libtest-strict-perl_0.45-1.debian.tar.xz
