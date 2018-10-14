@@ -4,21 +4,29 @@
 #
 Name     : perl-Test-Strict
 Version  : 0.47
-Release  : 2
+Release  : 3
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.47.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.47.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-strict-perl/libtest-strict-perl_0.45-1.debian.tar.xz
 Summary  : 'Check syntax, presence of use strict; and test coverage'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-Test-Strict-license
-Requires: perl-Test-Strict-man
-Requires: perl(IO::Scalar)
+Requires: perl-Test-Strict-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(IO::Scalar)
 
 %description
 testing strictness in a distribution, by Pierre Denis <pdenis@gmail.com>.
 * Installation
+
+%package dev
+Summary: dev components for the perl-Test-Strict package.
+Group: Development
+Provides: perl-Test-Strict-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-Test-Strict package.
+
 
 %package license
 Summary: license components for the perl-Test-Strict package.
@@ -28,19 +36,11 @@ Group: Default
 license components for the perl-Test-Strict package.
 
 
-%package man
-Summary: man components for the perl-Test-Strict package.
-Group: Default
-
-%description man
-man components for the perl-Test-Strict package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n Test-Strict-0.47
-mkdir -p %{_topdir}/BUILD/Test-Strict-0.47/deblicense/
+cd ..
+%setup -q -T -D -n Test-Strict-0.47 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Test-Strict-0.47/deblicense/
 
 %build
@@ -65,13 +65,13 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-Test-Strict
-cp LICENSE %{buildroot}/usr/share/doc/perl-Test-Strict/LICENSE
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-Test-Strict/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-Test-Strict
+cp LICENSE %{buildroot}/usr/share/package-licenses/perl-Test-Strict/LICENSE
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Test-Strict/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -80,13 +80,13 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/Test/Strict.pm
+/usr/lib/perl5/vendor_perl/5.26.1/Test/Strict.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-Test-Strict/LICENSE
-/usr/share/doc/perl-Test-Strict/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/Test::Strict.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-Test-Strict/LICENSE
+/usr/share/package-licenses/perl-Test-Strict/deblicense_copyright
