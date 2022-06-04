@@ -4,7 +4,7 @@
 #
 Name     : perl-Test-Strict
 Version  : 0.52
-Release  : 22
+Release  : 23
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.52.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.52.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-strict-perl/libtest-strict-perl_0.45-1.debian.tar.xz
@@ -102,4 +102,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.34.0/Test/Strict.pm
+/usr/lib/perl5/*
