@@ -5,7 +5,7 @@
 #
 Name     : perl-Test-Strict
 Version  : 0.52
-Release  : 25
+Release  : 26
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.52.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.52.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libt/libtest-strict-perl/libtest-strict-perl_0.45-1.debian.tar.xz
