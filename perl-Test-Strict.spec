@@ -7,7 +7,7 @@
 #
 Name     : perl-Test-Strict
 Version  : 0.54
-Release  : 31
+Release  : 32
 URL      : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.54.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/M/MA/MANWAR/Test-Strict-0.54.tar.gz
 Summary  : 'Check syntax, presence of use strict; and test coverage'
